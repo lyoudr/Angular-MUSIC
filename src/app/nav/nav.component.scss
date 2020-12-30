@@ -1,0 +1,39 @@
+.main{
+    height: 70px;
+    display: flex;
+    padding : 10px 15px;
+    align-items: center;
+    background-color: rgb(182, 182, 218);
+    a {
+        cursor: pointer;
+        img{
+            width: 25px;
+        }
+    }
+    .login{
+        margin-left: auto;
+    }
+    .manage{
+        margin-left: 25px;
+    }
+}
+.dropdown{
+    display: flex;
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    right: 0;
+    top: 90px;
+   &.active{
+        opacity: 1;
+        height: auto;
+        a {
+            padding: 10px 15px;
+            width: 100%;
+            background : #e0e0e0;
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+        }
+    };
+}

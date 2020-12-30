@@ -1,0 +1,12 @@
+<nav class="main">
+    <a class="login" routerLink = '/login'>
+        <img src="../../assets/icon/enter.svg"/>
+    </a>
+    <a class="manage" (click)="is_drop = !is_drop">
+        <img src="../../assets/icon/profile.svg"/>
+    </a>
+</nav>
+<div [ngClass] = "{'dropdown': true, 'active': is_drop}">
+    <a routerLink = '/blog/edit'>add new post</a>
+</div>
+

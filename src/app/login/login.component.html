@@ -1,0 +1,11 @@
+<section class="main">
+    <p class="text">username</p>
+    <input #username type = 'text'/>
+    <p class="text">password</p>
+    <input #password type = 'password'/>
+    <div class="button">
+        <button (click) = "submit(username.value, password.value)">
+            submit
+        </button>
+    </div>  
+</section>

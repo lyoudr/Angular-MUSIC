@@ -1,0 +1,70 @@
+
+<section #main_post class="post">
+    <div class="top_area">
+        <p class="post_type">{{post_type.toUpperCase()}}</p>
+        <a class="add" *ngIf = "post_type == 'section'" (click)="add_section()">
+            <img src='../../../assets/icon/add.svg'/>
+        </a>
+    </div>
+    
+    <form class="form" name = "post_form" (ngSubmit) = "submit_post()" *ngIf = "post_type == 'post'">
+        <div class="field">
+            <span>class</span>
+            <select class = 'class_name select' name = "blogclass_id" #blogclass_id (change) = "set_form(blogclass_id)">
+                <option *ngFor = 'let class of classes' [value]="turn_to_num(class.id)">
+                    {{class.name}}
+                </option>
+            </select>
+        </div>
+        <div class="field">
+            <span>Title</span>
+            <input name = "title" #title type = "text" (change) = "set_form(title)"/>
+        </div>
+        <div class="field">
+            <span>Description</span>
+            <input name = "description" #description type = "text" (change) = "set_form(description)"/>
+        </div>
+        <div class="field">
+            <span>Music sheet</span>
+            <input class="file" name = "music_sheet" #music_sheet id='music_sheet' type = "file" (change) = "set_form(music_sheet)" hidden/>
+            <label class="upload" for="music_sheet">{{music_sheet.files[0] ? music_sheet.files[0].name : 'uplaod'}}</label>
+        </div>
+        <div class="field">
+            <span>Photo</span>
+            <input class="file" name = "photo" #photo id='post_photo' type = "file" (change) = "set_form(photo)" hidden/>
+            <label class = 'upload' for = 'post_photo'>{{photo.files[0] ? photo.files[0].name : 'upload'}}</label>
+        </div>
+        <div class="field">
+            <button class="submit" type="submit">create</button>
+        </div>
+    </form>
+
+    <form class="section" #section_form *ngIf = "post_type == 'section'" (ngSubmit) = "submit_section()">
+        <div class="field">
+            <span>order</span>
+            <input name = "order" #order type = "text" (change) = "set_section(order)"/>
+        </div>
+        <div class="field">
+            <span>section type</span>
+            <select class="section_type select" name = 'post_type' #section_type (change) = 'set_section(section_type)'>
+                <option *ngFor = 'let type of section_types'>{{type}}</option> 
+            </select>
+        </div>
+        <div class="text_field" *ngIf = "e_section_type == 'text'">
+            <span>text</span>
+            <textarea rows = "20" name = "text" #text type = "text" (change) = set_section(text)></textarea>
+        </div>
+        <div class="field" *ngIf = "e_section_type == 'photo'">
+            <span>photo</span>
+            <input name = "photo" #section_photo id='section_photo' type = "file" (change) = "set_section(section_photo)" hidden/>
+            <label class = 'upload' for='section_photo'>{{section_photo.files[0] ? section_photo.files[0].name : 'upload'}}</label>
+        </div>
+        <div class="field" *ngIf = "e_section_type == 'video'">
+            <span>video</span>
+            <input name = "video" #video type = "text" (change) = "set_section(video)"/>
+        </div>
+        <div class="field">
+            <button class="submit" type="submit">create</button>
+        </div>
+    </form>
+</section>

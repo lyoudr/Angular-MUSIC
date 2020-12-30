@@ -1,0 +1,90 @@
+.post{
+    width: 60%;
+    margin : 0 auto;
+    padding: 2rem 0;
+    .top_area{
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        .post_type{
+            margin : 0 auto;
+            padding: 20px 0;
+            font-size: 18px;
+            color: #4d4c4c;
+            letter-spacing: 0.8px;
+            font-weight: 500;
+            float:left;
+        }
+        .add {
+            width: 25px;
+            cursor: pointer;
+        }
+    }
+    form{
+        &.section{
+            margin-top: 25px;
+        }
+        padding: 20px 40px;
+        box-shadow: 1px 1px 5px -2px #646262;
+        .text_field{
+            padding: 20px 0;
+            display: flex;
+            align-items: top;
+            textarea {
+                margin: 0 0 10px auto;
+                width: 60%;
+                padding: 10px 15px;
+                outline-width: 0;
+                font-size: 16px;
+                border: 1px solid #4d4c4c;
+            }
+        }
+        .field{
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            span{
+                width: 40%;
+                font-size: 16px;
+                letter-spacing: 1px;
+                color: #2e2e2e;
+                line-height: 0.8;
+            }
+            select, input{
+                margin: 10px 0 10px auto;
+                width: 60%;
+                padding: 10px 15px;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 0.5px soid #4d4c4c;
+                outline-width: 0;
+                font-size: 16px;
+            } 
+            .select{
+                cursor: pointer;
+            }
+            .upload{
+                font-size: 15px;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                outline : none;
+                cursor: pointer;
+                background-color: #646262;
+                padding: 5px 15px;
+                margin: 0 auto;
+            }
+        }
+        .submit{
+            font-size: 15px;
+            cursor: pointer;
+            color: #fff;
+            margin: 0 auto;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 25px;
+            background-color:  #646262;
+        }
+    }
+}
