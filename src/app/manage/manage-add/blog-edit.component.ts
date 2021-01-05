@@ -4,6 +4,8 @@ import { BlogService } from 'src/services/blog.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-blog-edit',
   templateUrl: './blog-edit.component.html',
@@ -22,7 +24,7 @@ export class BlogEditComponent implements OnInit {
     'edit': boolean
   }> = [{'type': 'text', 'photo': 'upload', 'edit': true}]; // number of sections
   section_types : Array<any> = ['text', 'photo', 'video']; // section type
-  host : string = 'http://127.0.0.1:5000'; // host url
+  host : string = environment.apiUrl; // host url
 
   @ViewChild('post_area') post_area!: ElementRef;
   @ViewChild('section_area') section_area!: ElementRef;

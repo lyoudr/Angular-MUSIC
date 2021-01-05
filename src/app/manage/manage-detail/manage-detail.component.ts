@@ -4,13 +4,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { BlogService } from 'src/services/blog.service';
 import { CookieService } from 'ngx-cookie-service';
 
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-manage-detail',
   templateUrl: './manage-detail.component.html',
   styleUrls: ['./manage-detail.component.scss']
 })
 export class ManageDetailComponent implements OnInit {
-  host : string = 'http://127.0.0.1:5000'
+  host : string = environment.apiUrl;
   post : any = {};
   sections : any = [];
 

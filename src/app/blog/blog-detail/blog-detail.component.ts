@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BlogService } from 'src/services/blog.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-blog-detail',
@@ -9,7 +10,8 @@ import { BlogService } from 'src/services/blog.service';
   styleUrls: ['./blog-detail.component.scss']
 })
 export class BlogDetailComponent implements OnInit {
-  url : string = 'http://127.0.0.1:5000'
+  
+  host : string = environment.apiUrl;
   post : any = {};
   sections : any = [];
 
