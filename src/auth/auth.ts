@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { AuthService } from "src/services/auth.service";
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Injectable({
     providedIn: 'root'
@@ -8,6 +10,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTr
 
 export class AuthGuard implements CanActivate{
     constructor(
+        private cookieService : CookieService,
         private authService: AuthService,
         private router : Router
     ) {}
@@ -21,7 +24,7 @@ export class AuthGuard implements CanActivate{
     
 
     check_login(url: string): true|UrlTree {
-        if (this.authService.isLoggedIn){
+        if (this.cookieService.get('user_id')){
             return true;
         }
         // Store the attempted URL for redirecting

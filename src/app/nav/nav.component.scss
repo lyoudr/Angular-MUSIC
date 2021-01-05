@@ -10,30 +10,51 @@
             width: 25px;
         }
     }
-    .login{
-        margin-left: auto;
+    .logo{
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 500;
+        >span{
+            color: #000;
+            margin-left: 15px;
+        }
     }
     .manage{
-        margin-left: 25px;
+        margin-left: auto;
     }
 }
+
 .dropdown{
-    display: flex;
-    position: absolute;
+    display: block;
+    width: 20%;
+    position: fixed;
     opacity: 0;
     height: 0;
     right: 0;
     top: 90px;
+    img {
+        height : 0;
+    }
    &.active{
         opacity: 1;
         height: auto;
         a {
-            padding: 10px 15px;
-            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 15px;
+            height: 50px;
             background : #e0e0e0;
             text-decoration: none;
             color: #000;
             font-size: 16px;
+            border-bottom: 1px solid #fff;
+        }
+        img{
+            margin-left:10px;
+            width: 15px;
         }
     };
 }

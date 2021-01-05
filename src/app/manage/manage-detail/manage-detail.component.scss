@@ -1,0 +1,65 @@
+.post{
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px 20px;
+
+    .header{
+        .title{
+            text-align: center;
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 3;
+        }
+        .description {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #727171;
+            letter-spacing: 0.4px;
+            text-align: justify;
+        }
+    }
+    .content{
+        text-align: justify;
+        letter-spacing: 0.4px;
+        line-height: 1.8;
+        text-indent: 20px;
+        .section{
+            padding: 1rem 0;
+            &.photo {
+                width: 50%;
+                margin: 0 auto;
+                .img{
+                    width: 100%;
+                }
+            }
+            &.video{
+                display: flex;
+                justify-content: center;
+                >iframe{
+                    width: 400px;
+                    height: 300px;
+                }
+            }
+        }
+    }
+    .pdf{
+        position: relative;
+        border : 1px solid #e0e0e0;
+        width : 50%;
+        margin : 0 auto;
+        .download{
+            position: absolute;
+            right: 15px;
+            bottom: 25px;
+            >img{
+                width: 20px;
+            }
+        }
+    }
+}
+
+
+:host ::ng-deep .pdfViewer{
+    display: flex !important;
+}
+

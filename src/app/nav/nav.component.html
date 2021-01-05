@@ -1,12 +1,17 @@
 <nav class="main">
-    <a class="login" routerLink = '/login'>
-        <img src="../../assets/icon/enter.svg"/>
+    <a class="logo" routerLink = '/blog'>
+        <img src = '../../assets/icon/apple.svg'/>
+        <span>Music</span>
     </a>
     <a class="manage" (click)="is_drop = !is_drop">
         <img src="../../assets/icon/profile.svg"/>
     </a>
 </nav>
 <div [ngClass] = "{'dropdown': true, 'active': is_drop}">
-    <a routerLink = '/blog/edit'>add new post</a>
+    <a class="login" routerLink = '/login'>
+        <p>Log In</p>
+        <img src="../../assets/icon/enter.svg"/>
+    </a>
+    <a routerLink = '/manage'>Personal page</a>
 </div>
 

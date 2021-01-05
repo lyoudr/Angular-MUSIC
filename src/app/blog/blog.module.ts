@@ -7,7 +7,7 @@ import { BlogComponent } from './blog.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { BlogEditComponent } from './blog-edit/blog-edit.component';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -18,8 +18,7 @@ import { BlogEditComponent } from './blog-edit/blog-edit.component';
     ],
     declarations : [
         BlogComponent,
-        BlogDetailComponent,
-        BlogEditComponent
+        BlogDetailComponent
     ]
 })
 export class BlogModule {}

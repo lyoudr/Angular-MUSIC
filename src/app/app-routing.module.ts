@@ -8,6 +8,10 @@ const routes: Routes = [
     path: 'blog',  
     loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)
   },
+  {
+    path : 'manage',
+    loadChildren : () => import('./manage/manage.module').then(m => m.ManageModule)
+  },
   { path: 'login', component : LoginComponent }
 ];
 

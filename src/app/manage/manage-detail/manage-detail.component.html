@@ -1,0 +1,27 @@
+<div class='post' *ngIf='post'>
+    <div class='header'>
+        <p class='title'>{{post.title}}</p>
+        <p class='description'>{{post.description}}</p>
+    </div>
+    <div class='content' *ngFor = 'let section of sections'>
+       <div class='section text' *ngIf="section.post_type == 'text'">
+           <p>{{section.text}}</p>
+       </div> 
+       <div class='section photo' *ngIf="section.post_type == 'photo'">
+           <img class='img' [src]= "host + section.photo"/>
+       </div>
+       <div class='section video' *ngIf="section.post_type == 'video'">
+            <iframe [src]= 'video_URL(section.video)'></iframe>
+       </div>
+    </div>
+    <div class='pdf'>
+        <pdf-viewer 
+            [src]="host + post.music_sheet" 
+            [render-text]="true" 
+            [original-size] = "false"
+        ></pdf-viewer>
+        <a class="download" [href] = "host + post.music_sheet" target="_blank">
+            <img src='../../../assets/icon/down-arrow.svg'/>
+        </a>
+    </div>
+</div>

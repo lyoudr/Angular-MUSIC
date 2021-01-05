@@ -9,7 +9,7 @@
     <div class = 'posts' *ngFor = 'let post of posts.data'>
         <a class = 'post' [routerLink] = "'/blog/post/' + post.blogpost_id">
             <div class = 'img_frame'>
-                <img class = 'img' [src] = 'url + post.photo'/>
+                <img class = 'img' [src] = 'host + post.photo'/>
             </div>
             <div class='content'>
                 <p class = 'title'>{{post.title}}</p>
