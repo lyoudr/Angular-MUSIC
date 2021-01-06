@@ -6,7 +6,7 @@ RUN npm install
 COPY . /music_web/
 RUN npm run build --prod
 
-# stage 2 : runn
+# stage 2 : run
 FROM nginx
 COPY --from=build /music_web/dist/music /tmp/frontend
 EXPOSE 80

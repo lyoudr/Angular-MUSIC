@@ -1,0 +1,27 @@
+image : docker:19.03.13
+
+variables:
+  DOCKER_HOST : tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+stages :
+  - build_image
+
+build_image :
+  stage : build_image
+  services :
+    - docker:19.03.13-dind
+  before_script:
+    - docker info
+  script :
+    - docker login -u lyoudr -p Awdxa48624
+    - docker build -t music_web:prod .
+    - docker tag music_web:prod lyoudr/music_web
+    - docker push lyoudr/music_web
+    - docker rmi music_web:prod
+  only : 
+    - master
+  tags :
+    - ann
+# run locally =>
+# gitlab-runner exec docker --docker-privileged build_image
