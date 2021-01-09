@@ -1,18 +1,19 @@
-image : docker:19.03.13
-
 variables:
-  DOCKER_HOST : tcp://docker:2375
-  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST : tcp://docker:2375/
+  DOCKER_DRIVER : overlay2
+  DOCKER_TLS_CERTDIR : "" # explain => https://about.gitlab.com/releases/2019/07/31/docker-in-docker-with-docker-19-dot-03/ 
+
 
 stages :
   - build_image
 
 build_image :
   stage : build_image
+  image : docker:stable
   services :
-    - docker:19.03.13-dind
-  before_script:
-    - docker info
+    - name : docker:dind
+      alias : docker
+      startup_timeout : 60
   script :
     - docker login -u lyoudr -p Awdxa48624
     - docker build -t music_web:prod .
@@ -23,5 +24,6 @@ build_image :
     - master
   tags :
     - ann
+
 # run locally =>
 # gitlab-runner exec docker --docker-privileged build_image
