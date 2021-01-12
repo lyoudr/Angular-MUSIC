@@ -21,7 +21,7 @@ build_image :
     - docker push lyoudr/music_web
     - docker rmi music_web:prod
   only : 
-    - master
+    - other
   tags :
     - ann
 
