@@ -81,7 +81,7 @@
             <form class="section" *ngIf = "!each_section.edit">
                 <div [class]= "'display ' + post_sections[index]['post_type']" >
                     <p *ngIf = "post_sections[index]['post_type'] == 'text'">{{post_sections[index]['text']}}</p>
-                    <img *ngIf = "post_sections[index]['post_type'] == 'photo'" [src] = "host + post_sections[index]['photo']"/>
+                    <img *ngIf = "post_sections[index]['post_type'] == 'photo'" [src] = "post_sections[index]['photo']"/>
                     <iframe *ngIf = "post_sections[index]['post_type'] == 'video'" [src] = "post_sections[index]['video']"></iframe>
                 </div>
             </form>
