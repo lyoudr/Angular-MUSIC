@@ -8,13 +8,13 @@
            <p>{{section.text}}</p>
        </div> 
        <div class='section photo' *ngIf="section.post_type == 'photo'">
-           <img class='img' [src]= "section.photo"/>
+           <img class='img' [src]= "host + section.photo"/>
        </div>
        <div class='section video' *ngIf="section.post_type == 'video'">
             <iframe [src]= 'video_URL(section.video)'></iframe>
        </div>
     </div>
-    <div class='pdf'>
+    <div class='pdf' *ngIf = "post.music_sheet">
         <pdf-viewer 
             [src]="post.music_sheet" 
             [render-text]="true" 

@@ -2,7 +2,7 @@
 <section #main_post class="post">
     <div class="top_area">
         <p class="post_type">{{post_type.toUpperCase()}}</p>
-        <a class="add" *ngIf = "post_type == 'section'" (click)="add_section()">
+        <a class="add" *ngIf = "post_type == 'section'" (click)="init_section()">
             <img src='../../../assets/icon/add.svg'/>
         </a>
     </div>
@@ -12,7 +12,7 @@
             <div class="field">
                 <span>class</span>
                 <select class = 'class_name select' name = "blogclass_id" #blogclass_id (change) = "set_form(blogclass_id)">
-                    <option *ngFor = 'let class of classes' [value]="turn_to_num(class.id)">
+                    <option *ngFor = 'let class of classes' [value]="class.id">
                         {{class.name}}
                     </option>
                 </select>
@@ -49,8 +49,8 @@
         </form>
     </ng-container>
     <ng-container *ngIf = "post_type == 'section'">
-        <ng-container *ngFor = "let each_section of sections; let index = index">
-            <form class="section edit" *ngIf = "each_section.edit" (ngSubmit) = "submit_section(index)">
+        <ng-container *ngFor = "let each_section of post_sections; let index = index">
+            <form class="section edit">
                 <div class="field">
                     <span>order</span>
                     <input type = "text" (change) = "set_section('order', $event.target, index)"/>
@@ -61,21 +61,18 @@
                         <option *ngFor = 'let type of section_types'>{{type}}</option> 
                     </select>
                 </div>
-                <div class="text_field" *ngIf = "each_section.type == 'text'">
+                <div class="text_field" *ngIf = "each_section.post_type == 'text'">
                     <span>text</span>
                     <textarea rows = "20" type = "text" (change) = "set_section('text', $event.target, index)"></textarea>
                 </div>
-                <div class="field" *ngIf = "each_section.type == 'photo'">
+                <div class="field" *ngIf = "each_section.post_type == 'photo'">
                     <span>photo</span>
                     <input id='section_photo' type = "file" (change) = "set_section('photo', $event.target, index)" hidden/>
-                    <label class = 'upload' for='section_photo'>{{each_section.photo}}</label>
+                    <label class = 'upload' for='section_photo'>{{each_section.photo.name ? each_section.photo.name: each_section.photo}}</label>
                 </div>
-                <div class="field" *ngIf = "each_section.type == 'video'">
+                <div class="field" *ngIf = "each_section.post_type == 'video'">
                     <span>video</span>
                     <input type = "text" (change) = "set_section('video', $event.target, index)"/>
-                </div>
-                <div class="field">
-                    <button class="submit" type="submit">create</button>
                 </div>
             </form>
             <form class="section" *ngIf = "!each_section.edit">
@@ -87,7 +84,7 @@
             </form>
         </ng-container>
         <div class="end">
-            <button class="finish" (click)="finish_edit()">finish</button>
+            <button class="finish" type="submit" (click)="submit_section()">create</button>
         </div>
     </ng-container>
 </section>

@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
     form_data.append('password', password);
     this.authService.login(form_data)
       .subscribe(data => {
-        this.cookieService.set('user_id', data.body.id);
+        console.log('data is =>', data)
+        this.cookieService.set('user_id', data.body.id); // user_id
+        this.cookieService.set('access_token', data.body.access) // access token
         if (data.status == 200){
           this.router.navigate(['/blog']);
         }

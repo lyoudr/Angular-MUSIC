@@ -1,11 +1,13 @@
 <section class="main">
     <div class = 'head'>
-        <a routerLink = '/manage/add'>Add new post</a>
+        <a routerLink = '/manage/add'>
+            <img src='../../../assets/icon/add.svg'/>
+        </a>
     </div>
-    <div class = 'posts' *ngFor = 'let post of posts.data'>
-        <a class = 'post' [routerLink] = "'/manage/post/' + post.blogpost_id">
+    <div class = 'posts' *ngFor = 'let post of posts'>
+        <a class = 'post' [routerLink] = "'/manage/post/' + post.id">
             <div class = 'img_frame'>
-                <img class = 'img' [src] = 'post.photo'/>
+                <img class = 'img' [src] = "host + post.photo"/>
             </div>
             <div class='content'>
                 <p class = 'title'>{{post.title}}</p>
@@ -14,15 +16,24 @@
             </div>
         </a>
         <div class="manage">
-            <a class="edit">edit</a>
-            <a class="delete" (click) = "confirm_del(post.blogpost_id)">delete</a>
+            <a class="edit" [routerLink] = "'/manage/modify/' + post.id">
+                <img src='../../../assets/icon/edit.svg'/>
+            </a>
+            <a class="delete" (click) = "confirm_del(post.id)">
+                <img src='../../../assets/icon/trash.svg'/>
+            </a>
         </div>
     </div>
 </section>
-<div class="pop_up" *ngIf = "is_pop">
-    <p>Are you sure you want to delete post {{post_id}} ? </p>
-    <div>
-        <a (click) = "del_post(true)">Yes</a>
-        <a (click) = "del_post(false)">No</a>
+<div class="hide" *ngIf = "is_pop">
+</div>
+<div class="check_box" *ngIf = "is_pop">
+    <div class="question">
+        <img (click)="del_post(false)" class='cancel' src='../../assets/icon/cancel.svg'/>
+        <p>Are you sure you want to delete post {{post_id}} ? </p>
+        <div class="choice">
+            <a (click) = "del_post(true)">Yes</a>
+            <a (click) = "del_post(false)">No</a>
+        </div>
     </div>
 </div>

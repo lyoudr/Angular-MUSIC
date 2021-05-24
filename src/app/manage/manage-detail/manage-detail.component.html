@@ -8,15 +8,19 @@
            <p>{{section.text}}</p>
        </div> 
        <div class='section photo' *ngIf="section.post_type == 'photo'">
-           <img class='img' [src]= "section.photo"/>
+           <img class='img' [src]= "host + section.photo"/>
        </div>
        <div class='section video' *ngIf="section.post_type == 'video'">
-            <iframe [src]= 'video_URL(section.video)'></iframe>
+            <iframe width="560" height="315" [src]= 'video_URL(section.video)' 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
        </div>
     </div>
-    <div class='pdf'>
+    <div *ngIf = 'post.music_sheet' class='pdf'>
         <pdf-viewer 
-            [src]="post.music_sheet" 
+            [src]="host + post.music_sheet" 
             [render-text]="true" 
             [original-size] = "false"
         ></pdf-viewer>

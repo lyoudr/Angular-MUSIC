@@ -24,7 +24,8 @@ export class BlogDetailComponent implements OnInit {
   ngOnInit(): void {
     // Get the blog post id from the current route
     const post_id = this.route.snapshot.paramMap.get('post_id');
-    this.blogService.getBlogPost(1, 5, post_id, [])
+    
+    this.blogService.getBlogDetailPost(post_id)
       .subscribe(data => {
         this.post = data;
         this.sections = this.post.blog_section;

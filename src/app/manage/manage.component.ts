@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 })
 export class ManageComponent implements OnInit {
   host : string = environment.apiUrl;
-  posts : any = {};
+  posts : any = [];
   post_id : number = 0;
   is_pop: boolean = false;
 
@@ -21,9 +21,10 @@ export class ManageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const user_id = this.cookieService.get('user_id');
-    this.blogService.getUserBlogPost(1, 10, null, user_id)
-      .subscribe((resp : any) => this.posts = resp);
+    this.blogService.getUserBlogPost(1, 10)
+      .subscribe((resp : any) => {
+        this.posts = resp['data']
+      });
   }
 
   confirm_del(post_id: number){

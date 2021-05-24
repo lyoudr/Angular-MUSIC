@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
 export class BlogComponent implements OnInit {
   classes : Array<{id: number, name: string}> = [];
   selected_class : Array<any> = [];
-  posts : any = {};
+  posts : any = [];
   host : string = environment.apiUrl;
 
   constructor(
@@ -23,12 +23,14 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     // Get classes of blog
-    this.blogService.getClasses()
-      .subscribe((resp : any) => this.classes = resp)
-
+    this.blogService.getClasses(1, 5)
+      .subscribe((resp : any) => this.classes = resp['data'])
+    
     // Get blog posts
-    this.blogService.getBlogPost(1, 10, null, this.selected_class)
-      .subscribe((resp : any) => this.posts = resp)
+    this.blogService.getBlogPost(1, 10, this.selected_class)
+      .subscribe((resp : any) => {
+        this.posts = resp['data'];
+      });
   }
 
   select_class(item : any){
@@ -39,7 +41,7 @@ export class BlogComponent implements OnInit {
     } else {
       this.selected_class.push(item)
     }
-    this.blogService.getBlogPost(1, 5, null, this.selected_class)
-      .subscribe((resp : any) => this.posts = resp)
+    this.blogService.getBlogPost(1, 5, this.selected_class)
+      .subscribe((resp : any) => this.posts = resp['data'])
   }
 }

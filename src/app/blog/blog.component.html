@@ -1,15 +1,15 @@
 <section class="main">
     <div class = "classes">
         <a  *ngFor = 'let class of classes; let index = index;' 
-            class = 'class' [ngClass] = "{'active' : selected_class.includes(index)}" 
-            (click) = "select_class(index)">
+            class = 'class' [ngClass] = "{'active' : selected_class.includes(index + 1)}" 
+            (click) = "select_class(index + 1)">
             {{class.name}}
         </a>
     </div>
-    <div class = 'posts' *ngFor = 'let post of posts.data'>
-        <a class = 'post' [routerLink] = "'/blog/post/' + post.blogpost_id">
+    <div class = 'posts' *ngFor = 'let post of posts'>
+        <a class = 'post' [routerLink] = "'/blog/' + post.id">
             <div class = 'img_frame'>
-                <img class = 'img' [src] = 'post.photo'/>
+                <img class = 'img' [src] = "host + post.photo"/>
             </div>
             <div class='content'>
                 <p class = 'title'>{{post.title}}</p>

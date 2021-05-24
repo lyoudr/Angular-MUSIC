@@ -19,7 +19,7 @@ export class AuthService {
     ) { }
 
     login(user_info : any): Observable<any> {
-        return this.http.post(`${this.host}/api/auth/login/`, user_info, {
+        return this.http.post(`${this.host}/api/auth/user/login/`, user_info, {
             responseType : 'json',
             observe : 'response'
         })
