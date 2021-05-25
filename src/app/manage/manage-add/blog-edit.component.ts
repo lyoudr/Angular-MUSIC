@@ -111,6 +111,6 @@ export class BlogEditComponent implements OnInit {
     this.blogService.postBlogSection(this.post_sections).subscribe((data: any) => {
         console.log('data is =>', data);
     });
-    this.router.navigateByUrl('/blog');
+    this.router.navigateByUrl('/manage');
   }
 }

@@ -30,11 +30,12 @@
             display: flex;
             align-items: top;
             textarea {
+                font-family:sans-serif;
+                font-size: 15px;
                 margin: 0 0 10px auto;
                 width: 60%;
                 padding: 10px 15px;
                 outline-width: 0;
-                font-size: 16px;
                 border: 1px solid #4d4c4c;
             }
         }
@@ -122,7 +123,7 @@
             border: none;
             border-radius: 4px;
             padding: 10px 25px;
-            background-color:  #e2b3b3;
+            background-color:  #e46868;
         }
     }
 }

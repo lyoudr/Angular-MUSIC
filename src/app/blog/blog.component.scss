@@ -25,7 +25,7 @@
             
             .img_frame{
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: center;
             }
             .img{
@@ -33,12 +33,13 @@
             }
             .content{
                 position: relative;
-                height: 170px;
+                height: 160px;
                 padding-left: 20px;
                 .title{
                     color: #424242;
                     font-weight: 500;
                     font-size: 17px;
+                    margin-top: 0;
                 }
                 .description{
                     color: #535151;
@@ -57,6 +58,7 @@
                     letter-spacing: 0.4px;
                     position: absolute;
                     bottom: 0;
+                    margin: 0;
                 }
             }
         }
