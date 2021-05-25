@@ -1,4 +1,4 @@
-<section class="main">
+<section class="main col-8 col-m-10 col-s-11">
     <div class = 'head'>
         <a routerLink = '/manage/add'>
             <img src='../../../assets/icon/add.svg'/>
@@ -6,10 +6,10 @@
     </div>
     <div class = 'posts' *ngFor = 'let post of posts'>
         <a class = 'post' [routerLink] = "'/manage/post/' + post.id">
-            <div class = 'img_frame'>
+            <div class = 'img_frame col-5 col-s-7'>
                 <img class = 'img' [src] = "host + post.photo"/>
             </div>
-            <div class='content'>
+            <div class='content col-7 col-s-5'>
                 <p class = 'title'>{{post.title}}</p>
                 <p class = 'description'>{{post.description}}</p>
                 <p class = 'created_time'>{{post.created_time}}</p>
