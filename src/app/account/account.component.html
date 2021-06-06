@@ -1,0 +1,21 @@
+<section *ngIf = "!registered" class="main col-8 col-m-10 col-s-10">
+    <p class = 'text'>username</p>
+    <input #username type = 'text'/>
+    <p class="text">email</p>
+    <input #email type = 'email'/>
+    <p class="text">password</p>
+    <input #password type = 'password'/>
+    <div class="button">
+        <button [class]="is_active ? 'active': ''" 
+            (click) = "submit(username.value, email.value, password.value); is_active = true;"
+        >
+            Create Account
+        </button>
+    </div> 
+</section>
+<section *ngIf = "registered" class = 'main pop_up'>
+    <div>
+        <p>You have signed up successfully!</p>
+        <p>Please check your email to verify email.</p>
+    </div>
+</section>

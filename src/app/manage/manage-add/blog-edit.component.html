@@ -27,7 +27,7 @@
             </div>
             <div class="field">
                 <span>Music sheet</span>
-                <input class="file" name = "music_sheet" #music_sheet id='music_sheet' type = "file" (change) = "set_form(music_sheet)" hidden/>
+                <input class="file" name = "music_sheet" id = 'music_sheet' #music_sheet type = "file" (change) = "set_form(music_sheet)" hidden/>
                 <label class="upload" for="music_sheet">{{music_sheet.files 
                     ? music_sheet.files[0]
                         ? music_sheet.files[0].name : 'upload' 
@@ -36,7 +36,7 @@
             </div>
             <div class="field">
                 <span>Photo</span>
-                <input class="file" name = "photo" #photo id='post_photo' type = "file" (change) = "set_form(photo)" hidden/>
+                <input class="file" id = 'post_photo' name = "photo" #photo type = "file" (change) = "set_form(photo)" hidden/>
                 <label class = 'upload' for = 'post_photo'>{{photo.files 
                     ? photo.files[0]
                         ? photo.files[0].name : 'upload'
@@ -49,37 +49,37 @@
         </form>
     </ng-container>
     <ng-container *ngIf = "post_type == 'section'">
-        <ng-container *ngFor = "let each_section of post_sections; let index = index">
+        <ng-container *ngFor = "let each_section of post_sections;">
             <form class="section edit">
                 <div class="field">
                     <span>order</span>
-                    <input type = "text" (change) = "set_section('order', $event.target, index)"/>
+                    <input type = "text" (change) = "set_section('order', $event.target, each_section.index)"/>
                 </div>
                 <div class="field">
                     <span>section type</span>
-                    <select class="section_type select" (change) = "set_section('post_type', $event.target, index);">
+                    <select class="section_type select" (change) = "set_section('post_type', $event.target, each_section.index);">
                         <option *ngFor = 'let type of section_types'>{{type}}</option> 
                     </select>
                 </div>
                 <div class="text_field" *ngIf = "each_section.post_type == 'text'">
                     <span>text</span>
-                    <textarea rows = "20" type = "text" (change) = "set_section('text', $event.target, index)"></textarea>
+                    <textarea rows = "20" type = "text" (change) = "set_section('text', $event.target, each_section.index)"></textarea>
                 </div>
                 <div class="field" *ngIf = "each_section.post_type == 'photo'">
                     <span>photo</span>
-                    <input id='section_photo' type = "file" (change) = "set_section('photo', $event.target, index)" hidden/>
-                    <label class = 'upload' for='section_photo'>{{each_section.photo.name ? each_section.photo.name: each_section.photo}}</label>
+                    <input type = "file" [id] = "'section_photo' + each_section.index" (change) = "set_section('photo', $event.target, each_section.index)" hidden/>
+                    <label class = 'upload' [for] = "'section_photo' + each_section.index">{{each_section.photo.name ? each_section.photo.name: each_section.photo}}</label>
                 </div>
                 <div class="field" *ngIf = "each_section.post_type == 'video'">
                     <span>video</span>
-                    <input type = "text" (change) = "set_section('video', $event.target, index)"/>
+                    <input type = "text" (change) = "set_section('video', $event.target, each_section.index)"/>
                 </div>
             </form>
             <form class="section" *ngIf = "!each_section.edit">
-                <div [class]= "'display ' + post_sections[index]['post_type']" >
-                    <p *ngIf = "post_sections[index]['post_type'] == 'text'">{{post_sections[index]['text']}}</p>
-                    <img *ngIf = "post_sections[index]['post_type'] == 'photo'" [src] = "post_sections[index]['photo']"/>
-                    <iframe *ngIf = "post_sections[index]['post_type'] == 'video'" [src] = "post_sections[index]['video']"></iframe>
+                <div [class]= "'display ' + post_sections[each_section.index]['post_type']" >
+                    <p *ngIf = "post_sections[each_section.index]['post_type'] == 'text'">{{post_sections[each_section.index]['text']}}</p>
+                    <img *ngIf = "post_sections[each_section.index]['post_type'] == 'photo'" [src] = "post_sections[each_section.index]['photo']"/>
+                    <iframe *ngIf = "post_sections[each_section.index]['post_type'] == 'video'" [src] = "post_sections[each_section.index]['video']"></iframe>
                 </div>
             </form>
         </ng-container>

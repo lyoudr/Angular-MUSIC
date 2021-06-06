@@ -39,6 +39,7 @@ export class BlogEditComponent implements OnInit {
       });
     // set initial class
     this.post_form.set('user_id', this.cookieService.get('user_id'));
+    console.log('this.post_form is =>', this.post_form)
     this.post_form.set('blogclass_id', '1');
   }
 
@@ -76,6 +77,7 @@ export class BlogEditComponent implements OnInit {
         'photo_id': null,
         'video': null,
         'edit': true,
+        'index': this.post_sections.length
     });
   }
 

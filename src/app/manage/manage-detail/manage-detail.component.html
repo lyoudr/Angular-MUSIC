@@ -3,29 +3,33 @@
         <p class='title'>{{post.title}}</p>
         <p class='description'>{{post.description}}</p>
     </div>
-    <div class='content' *ngFor = 'let section of sections'>
-       <div class='section text' *ngIf="section.post_type == 'text'">
-           <p>{{section.text}}</p>
-       </div> 
-       <div class='section photo col-8 col-m-11 col-s-11' *ngIf="section.post_type == 'photo'">
-           <img class='img' [src]= "host + section.photo"/>
-       </div>
-       <div class='section video' *ngIf="section.post_type == 'video'">
-            <iframe width="560" height="315" [src]= 'video_URL(section.video)' 
-                title="YouTube video player" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-       </div>
-    </div>
-    <div *ngIf = 'post.music_sheet' class='pdf'>
-        <pdf-viewer 
-            [src]="host + post.music_sheet" 
-            [render-text]="true" 
-            [original-size] = "false"
-        ></pdf-viewer>
-        <a class="download" [href] = "post.music_sheet" target="_blank">
-            <img src='../../../assets/icon/down-arrow.svg'/>
-        </a>
+    <div class = 'paper'>
+        <div *ngIf = 'post.music_sheet' class='pdf col-5 col-m-12 col-s-12'>
+            <pdf-viewer 
+                [src]="host + post.music_sheet" 
+                [render-text]="true" 
+                [original-size] = "false"
+            ></pdf-viewer>
+            <a class="download" [href] = "post.music_sheet" target="_blank">
+                <img src='../../../assets/icon/down-arrow.svg'/>
+            </a>
+        </div>
+        <div class='content col-6 col-m-12 col-s-12'>
+            <ng-container *ngFor = 'let section of sections'>
+                <div class='section text' *ngIf="section.post_type == 'text'">
+                    <p>{{section.text}}</p>
+                </div> 
+                <div class='section photo col-8 col-m-11 col-s-11' *ngIf="section.post_type == 'photo'">
+                    <img class='img' [src]= "host + section.photo"/>
+                </div>
+                <div class='section video' *ngIf="section.post_type == 'video'">
+                    <iframe width="560" height="315" [src]= 'video_URL(section.video)' 
+                        title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </ng-container>
+        </div>
     </div>
 </div>

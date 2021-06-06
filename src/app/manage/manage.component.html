@@ -4,25 +4,28 @@
             <img src='../../../assets/icon/add.svg'/>
         </a>
     </div>
-    <div class = 'posts' *ngFor = 'let post of posts'>
-        <a class = 'post' [routerLink] = "'/manage/post/' + post.id">
-            <div class = 'img_frame col-5 col-s-7'>
-                <img class = 'img' [src] = "host + post.photo"/>
-            </div>
-            <div class='content col-7 col-s-5'>
-                <p class = 'title'>{{post.title}}</p>
-                <p class = 'description'>{{post.description}}</p>
-                <p class = 'created_time'>{{post.created_time}}</p>
-            </div>
-        </a>
-        <div class="manage">
-            <a class="edit" [routerLink] = "'/manage/modify/' + post.id">
-                <img src='../../../assets/icon/edit.svg'/>
+    <div class = 'posts'>
+        <p *ngIf = "is_empty"> You can add your own post here. </p>
+        <ng-container *ngFor = 'let post of posts'>
+            <a class = 'post' [routerLink] = "'/manage/post/' + post.id">
+                <div class = 'img_frame col-5 col-s-7'>
+                    <img class = 'img' [src] = "host + post.photo"/>
+                </div>
+                <div class='content col-7 col-s-5'>
+                    <p class = 'title'>{{post.title}}</p>
+                    <p class = 'description'>{{post.description}}</p>
+                    <p class = 'created_time'>{{post.created_time}}</p>
+                </div>
             </a>
-            <a class="delete" (click) = "confirm_del(post.id)">
-                <img src='../../../assets/icon/trash.svg'/>
-            </a>
-        </div>
+            <div class="manage">
+                <a class="edit" [routerLink] = "'/manage/modify/' + post.id">
+                    <img src='../../../assets/icon/edit.svg'/>
+                </a>
+                <a class="delete" (click) = "confirm_del(post.id)">
+                    <img src='../../../assets/icon/trash.svg'/>
+                </a>
+            </div>
+        </ng-container>
     </div>
 </section>
 <div class="hide" *ngIf = "is_pop">

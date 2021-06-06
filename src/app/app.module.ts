@@ -6,11 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BlogModule } from './blog/blog.module';
+import { AccountModule } from './account/account.module';
+import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
 
 import { CookieService } from 'ngx-cookie-service';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,9 @@ import { CookieService } from 'ngx-cookie-service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BlogModule
+    BlogModule,
+    AccountModule,
+    SharedModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

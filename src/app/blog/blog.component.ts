@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../../services/blog.service';
 
 import { environment } from '../../environments/environment';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-blog',
@@ -18,10 +19,13 @@ export class BlogComponent implements OnInit {
   host : string = environment.apiUrl;
 
   constructor(
-    private blogService : BlogService
+    private blogService : BlogService,
+    private sharedService : SharedService
   ) { }
 
   ngOnInit(): void {
+    this.sharedService.toggle_is_loading(true);
+    
     // Get classes of blog
     this.blogService.getClasses(1, 5)
       .subscribe((resp : any) => this.classes = resp['data'])
@@ -30,6 +34,7 @@ export class BlogComponent implements OnInit {
     this.blogService.getBlogPost(1, 10, this.selected_class)
       .subscribe((resp : any) => {
         this.posts = resp['data'];
+        this.sharedService.toggle_is_loading(false);
       });
   }
 
@@ -41,6 +46,7 @@ export class BlogComponent implements OnInit {
     } else {
       this.selected_class.push(item)
     }
+    
     this.blogService.getBlogPost(1, 5, this.selected_class)
       .subscribe((resp : any) => this.posts = resp['data'])
   }

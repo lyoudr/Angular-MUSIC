@@ -8,7 +8,7 @@ import { ManageDetailComponent } from './manage-detail/manage-detail.component';
 import { ManageModifyComponent } from './manage-modify/manage-modify.component';
 
 const routes: Routes = [
-  { path: '', component: ManageComponent },
+  { path: '', component: ManageComponent, canActivate : [AuthGuard]},
   { path: 'add', component : BlogEditComponent, canActivate : [AuthGuard]},
   { path: 'modify/:post_id', component : ManageModifyComponent, canActivate : [AuthGuard]},
   { path: 'post/:post_id', component : ManageDetailComponent, canActivate : [AuthGuard]}

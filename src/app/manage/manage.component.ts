@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BlogService } from 'src/services/blog.service';
+import { SharedService } from 'src/services/shared.service';
 
 import { environment } from '../../environments/environment';
 
@@ -14,16 +15,22 @@ export class ManageComponent implements OnInit {
   posts : any = [];
   post_id : number = 0;
   is_pop: boolean = false;
+  is_empty : boolean = false;
 
   constructor(
-    private cookieService : CookieService,
-    private blogService : BlogService
+    private blogService : BlogService,
+    private sharedService : SharedService,
   ) { }
 
   ngOnInit(): void {
+    this.sharedService.toggle_is_loading(true);
     this.blogService.getUserBlogPost(1, 10)
       .subscribe((resp : any) => {
-        this.posts = resp['data']
+        if (resp == 'not found'){
+          this.is_empty = true;
+        }
+        this.posts = resp['data'];
+        this.sharedService.toggle_is_loading(false);
       });
   }
 

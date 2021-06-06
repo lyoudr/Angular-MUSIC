@@ -24,6 +24,7 @@ export class AuthGuard implements CanActivate{
     
 
     check_login(url: string): true|UrlTree {
+        console.log("this.cookieService.get('user_id') is =>", this.cookieService.get('user_id'));
         if (this.cookieService.get('user_id')){
             return true;
         }

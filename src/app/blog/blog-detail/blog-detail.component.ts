@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BlogService } from 'src/services/blog.service';
 import { environment } from './../../../environments/environment';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-blog-detail',
@@ -18,10 +19,13 @@ export class BlogDetailComponent implements OnInit {
   constructor(
     private route : ActivatedRoute,
     private blogService : BlogService,
+    private sharedService : SharedService,
     private sanitizer : DomSanitizer
   ) { }
 
   ngOnInit(): void {
+    this.sharedService.toggle_is_loading(true);
+
     // Get the blog post id from the current route
     const post_id = this.route.snapshot.paramMap.get('post_id');
     
@@ -29,6 +33,7 @@ export class BlogDetailComponent implements OnInit {
       .subscribe(data => {
         this.post = data;
         this.sections = this.post.blog_section;
+        this.sharedService.toggle_is_loading(false);
       })
   }
 

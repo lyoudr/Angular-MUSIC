@@ -3,8 +3,12 @@
     <input #username type = 'text'/>
     <p class="text">password</p>
     <input #password type = 'password'/>
+    <div class='question'>
+        <a class = 'account' routerLink = '/account'>Create account</a>
+        <a class = 'password' routerLink = '/account/forget_password'>Forget password</a>
+    </div>
     <div class="button">
-        <button (click) = "submit(username.value, password.value)">
+        <button [class]="is_active ? 'active': ''" (click) = "submit(username.value, password.value); is_active = true;">
             submit
         </button>
     </div> 

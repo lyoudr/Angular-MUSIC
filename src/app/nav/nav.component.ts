@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'src/services/auth.service';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +13,12 @@ export class NavComponent implements OnInit {
   
   is_drop: boolean = false;
   
-  constructor(private router : Router) { }
+  constructor(
+    private router : Router,
+    private authService : AuthService,
+    private cookieService : CookieService,
+    private sharedService : SharedService,
+  ) { }
 
   ngOnInit(): void {
     this.router.events.subscribe((val : any) => {
@@ -20,4 +28,17 @@ export class NavComponent implements OnInit {
     });
   }
 
+  logout(){
+    this.sharedService.toggle_is_loading(true);
+    this.authService.logout()
+      .subscribe(data => {
+        if (data == "You've benn logout"){
+          this.cookieService.deleteAll();
+          setTimeout(() => {
+            this.sharedService.toggle_is_loading(false);
+            this.router.navigate(['/blog']);
+          }, 2000);
+        }
+      });
+  }
 }
