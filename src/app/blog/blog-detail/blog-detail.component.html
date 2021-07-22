@@ -10,7 +10,7 @@
                 [render-text]="true" 
                 [original-size] = "false"
             ></pdf-viewer>
-            <a class="download" [href] = "post.music_sheet" target="_blank">
+            <a class="download" [href] = "host + post.music_sheet" [download]="post.music_sheet">
                 <img src='../../../assets/icon/down-arrow.svg'/>
             </a>
         </div>
