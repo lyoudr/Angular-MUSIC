@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { CookieService } from 'ngx-cookie-service';
 import { BlogService } from 'src/services/blog.service';
 import { SharedService } from 'src/services/shared.service';
@@ -18,6 +20,7 @@ export class ManageComponent implements OnInit {
   is_empty : boolean = false;
 
   constructor(
+    private router : Router,
     private blogService : BlogService,
     private sharedService : SharedService,
   ) { }
@@ -31,7 +34,14 @@ export class ManageComponent implements OnInit {
         }
         this.posts = resp['data'];
         this.sharedService.toggle_is_loading(false);
-      });
+      },
+      (error) => {
+        if (error['status'] == 401){
+          this.sharedService.toggle_is_loading(false);
+          this.router.navigate(['/login']);
+        }
+      }
+      );
   }
 
   confirm_del(post_id: number){

@@ -4,15 +4,25 @@
         <p class='description'>{{post.description}}</p>
     </div>
     <div class = 'paper'>
-        <div class='pdf col-5 col-m-12 col-s-12' *ngIf = "post.music_sheet">
-            <pdf-viewer 
-                [src]="host + post.music_sheet" 
-                [render-text]="true" 
-                [original-size] = "false"
-            ></pdf-viewer>
-            <a class="download" [href] = "host + post.music_sheet" [download]="post.music_sheet">
-                <img src='../../../assets/icon/down-arrow.svg'/>
-            </a>
+        <div class = 'left col-5 col-m-12 col-s-12'>
+            <div class='pdf' *ngIf = "post.music_sheet">
+                <pdf-viewer 
+                    [src]="post.music_sheet" 
+                    [render-text]="true" 
+                    [original-size] = "false"
+                ></pdf-viewer>
+                <a class="download" [href] = "post.music_sheet" [download]="post.music_sheet" target="_blank">
+                    <img src='../../../assets/icon/down-arrow.svg'/>
+                </a>
+            </div>
+            <div class = 'cart' *ngIf = "post.product_id">
+                <div class = 'numbers'>
+                    <a class = 'btn' (click)="md_count(-1)"><img src = "../../../assets/icon/minus.png"/></a>
+                    <p>{{count}}</p>
+                    <a class = 'btn' (click)="md_count(1)"><img src = "../../../assets/icon/add.svg"/></a>
+                </div>
+                <button class = 'add_to_cart' (click) = "add_to_cart(post.product_id)"> Add to Cart </button>
+            </div>
         </div>
         <div class='content col-6 col-m-12 col-s-12'>
             <ng-container *ngFor = 'let section of sections'>
@@ -20,13 +30,24 @@
                     <p>{{section.text}}</p>
                 </div> 
                 <div class='section photo col-12' *ngIf="section.post_type == 'photo'">
-                    <img class='img' [src]= "host + section.photo"/>
+                    <img class='img' [src]= "section.photo"/>
                 </div>
                 <div class='section video' *ngIf="section.post_type == 'video'">
-                        <iframe [src]= 'video_URL(section.video)'></iframe>
+                    <iframe [src]= 'video_URL(section.video)'></iframe>
                 </div>
             </ng-container>
         </div>
     </div>
-    
+</div>
+<div class = "background" *ngIf = "add_success || login_no">
+    <section [ngClass] = "{'pop_up': true, 'show' : add_success ? true : false}" *ngIf = "add_success">
+        <p>You have successfully added products to cart.</p>
+    </section>
+    <section [ngClass] = "{'pop_up': true, 'show' : login_no ? true : false}" *ngIf = "login_no">
+        <p>To buy product, please sign in or sign up for an account.</p>
+        <div class='choice'>
+            <a [routerLink] = "'/account/'">Sign Up</a>
+            <a [routerLink] = "'/login/'">Sing In</a>
+        </div>
+    </section>
 </div>

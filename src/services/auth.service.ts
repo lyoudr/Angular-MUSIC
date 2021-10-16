@@ -21,9 +21,10 @@ export class AuthService {
     ) { }
 
     login(user_info : any): Observable<any> {
+        console.log('here');
         return this.http.post(`${this.host}/api/auth/user/login/`, user_info, {
             responseType : 'json',
-            observe : 'response'
+            observe : 'response',
         })
         .pipe(
             delay(1000),

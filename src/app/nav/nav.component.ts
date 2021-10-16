@@ -12,7 +12,8 @@ import { SharedService } from 'src/services/shared.service';
 export class NavComponent implements OnInit {
   
   is_drop: boolean = false;
-  
+  order_num: number = 0;
+
   constructor(
     private router : Router,
     private authService : AuthService,
@@ -26,6 +27,7 @@ export class NavComponent implements OnInit {
         this.is_drop = false;
       }
     });
+    this.sharedService.order_num.subscribe(order_num => this.order_num = order_num);
   }
 
   logout(){

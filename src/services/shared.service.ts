@@ -7,7 +7,8 @@ import { Subject } from 'rxjs';
 export class SharedService {
   is_loading : boolean = false;
   is_loadingChange: Subject<boolean> = new Subject<boolean>();
-  
+  order_num : Subject<number> = new Subject<number>();
+
   constructor() { 
     this.is_loadingChange.subscribe((value) => {
       this.is_loading = value

@@ -6,7 +6,7 @@
     <div class = 'paper'>
         <div *ngIf = 'post.music_sheet' class='pdf col-5 col-m-12 col-s-12'>
             <pdf-viewer 
-                [src]="host + post.music_sheet" 
+                [src]="post.music_sheet" 
                 [render-text]="true" 
                 [original-size] = "false"
             ></pdf-viewer>
@@ -20,7 +20,7 @@
                     <p>{{section.text}}</p>
                 </div> 
                 <div class='section photo col-8 col-m-11 col-s-11' *ngIf="section.post_type == 'photo'">
-                    <img class='img' [src]= "host + section.photo"/>
+                    <img class='img' [src]= "section.photo"/>
                 </div>
                 <div class='section video' *ngIf="section.post_type == 'video'">
                     <iframe width="560" height="315" [src]= 'video_URL(section.video)' 

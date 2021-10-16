@@ -3,7 +3,11 @@
         <img src = '../../assets/icon/apple.svg'/>
         <span>Music</span>
     </a>
-    <a class="manage right" (click)="is_drop = !is_drop">
+    <a class = 'manage right' routerLink = '/cart'>
+        <img src="../../assets/icon/shopping-cart.png"/>
+        <span>{{order_num}}</span>
+    </a>
+    <a class="right" (click)="is_drop = !is_drop">
         <img src="../../assets/icon/profile.svg"/>
     </a>
 </nav>

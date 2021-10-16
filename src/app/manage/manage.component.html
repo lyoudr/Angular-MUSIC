@@ -9,7 +9,7 @@
         <ng-container *ngFor = 'let post of posts'>
             <a class = 'post' [routerLink] = "'/manage/post/' + post.id">
                 <div class = 'img_frame col-5 col-s-7'>
-                    <img class = 'img' [src] = "host + post.photo"/>
+                    <img class = 'img' [src] = "post.photo"/>
                 </div>
                 <div class='content col-7 col-s-5'>
                     <p class = 'title'>{{post.title}}</p>
