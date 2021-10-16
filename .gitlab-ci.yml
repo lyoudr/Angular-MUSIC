@@ -12,6 +12,9 @@ build:
   stage: build
   script:
     - npm run build --prod
+  artifacts:
+    paths:
+      - ./dist/music/
   only: ['master']
 
 # Job Two for deploy build to S3
@@ -20,8 +23,12 @@ deploy:
   stage: deploy
   before_script:
     - pip install awscli
+  dependencies:
+    - build
   script:
-    - aws s3 sync ./dist s3://BUCKET_NAME/
+    - ls
+    - aws s3 cp ./dist/music s3://musicweb/ --recursive
+    - aws s3 sync ./dist/music s3://musicweb/ --delete
   only: ['master']
 
 # variables:
