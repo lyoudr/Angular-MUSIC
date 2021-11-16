@@ -1,4 +1,7 @@
 <section class="main col-6 col-m-10 col-s-11">
+    <div class = 'no_orders' *ngIf = 'orders.length == 0'>
+        <p>There is no orders in your cart.</p>
+    </div>
     <ng-container *ngFor = 'let order of orders'>
         <div class = 'order_header'>
             <p>{{order.product_type_name}}</p>

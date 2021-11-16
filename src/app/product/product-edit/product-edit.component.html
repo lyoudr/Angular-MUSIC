@@ -1,47 +1,6 @@
-<section class = 'main pd-s pd-l'>
-    <div class="product col-5 col-m-8 col-s-11">
-        <form *ngIf = "productForm" class="form" [formGroup] = "productForm" (ngSubmit) = "onSubmit()">
-            <div class="field">
-                <span>Blog Post</span>
-                <select 
-                    #blog_post
-                    class = 'class_name select' 
-                    name = "blogpost_id" 
-                    formControlName="blogpost_id" 
-                >
-                    <option *ngFor = 'let post of posts' [value]="post.id">
-                        {{post.title}}
-                    </option>
-                </select>
-            </div>
-            <div class="field">
-                <span>Product Name</span>
-                <input id="product_name" name="product_name" type="text" formControlName="product_name"/>
-            </div>
-            <div class="field">
-                <span>Product Type</span>
-                <select class = 'select' name = "product_type_id" formControlName="product_type_id">
-                    <option *ngFor = 'let product_type of product_types' [value]="product_type.id">
-                        {{product_type.type_name}}
-                    </option>
-                </select>
-            </div>
-            <div class="field">
-                <span>Description</span>
-                <input id="description" name="description" type = "text" formControlName="description"/>
-            </div>
-            <div class="field">
-                <span>Price</span>
-                <input id="price" name="price" type = "text" formControlName="price"/>
-            </div>
-            <div class="field">
-                <button class="submit" type="submit">update</button>
-            </div>
-        </form>
-    </div>
-</section>
-<div class = "background" *ngIf = "update_success">
-    <section [ngClass] = "{'pop_up': true, 'show' : update_success ? true : false}" *ngIf = "update_success">
-        <p>You have successfully updated one product.</p>
-    </section>
-</div>
+<app-product-add-edit 
+    [productForm]="productForm"
+    [md_success]="md_success"
+    [submit_text]="submit_text"
+    (submitForm)="onSubmit($event)"
+></app-product-add-edit>

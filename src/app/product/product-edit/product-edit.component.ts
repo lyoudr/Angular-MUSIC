@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { BlogService } from 'src/services/blog.service';
 import { ProductService } from 'src/services/product.service';
-import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -13,22 +11,21 @@ import { SharedService } from 'src/services/shared.service';
 })
 export class ProductEditComponent implements OnInit {
 
-  posts : Array<any> = [];
-  product_types: Array<any> = [];
   productForm : any;
-  update_success : boolean = false;
-
+  md_success : boolean = false;
+  submit_text : Object = {
+    'btn': 'update',
+    'info': 'You have successfully update one product.'
+  }
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private activatedRoute : ActivatedRoute,
     private productService : ProductService,
-    private blogService : BlogService,
     private cookieService : CookieService,
-    private sharedService : SharedService,
   ) { }
 
   ngOnInit(): void {
-    this.sharedService.toggle_is_loading(true);
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
       // 1. get product detail
@@ -44,29 +41,19 @@ export class ProductEditComponent implements OnInit {
             price : [product['price']],
           });
         });
-      
-      // 2. get blog post
-      this.blogService.getUserBlogPost(1, 10)
-        .subscribe((resp: any) => {
-          this.posts = resp['data'];
-          this.sharedService.toggle_is_loading(false);
-        });
-      // 3. get product types
-      this.productService.getProductTypes()
-        .subscribe((resp: any) => this.product_types = resp['result_data']);
     });
   }
-  onSubmit(){
-    console.log('this.productForm.value is =>', this.productForm.value);
-    let data = this.productForm.value;
+  onSubmit(form_value : any){
+    let data = form_value;
     data['owner_id'] = this.cookieService.get('user_id');
     this.productService.updateProduct(data)
       .subscribe((resp: any) => {
         if(resp['return_code'] == '0000'){
-          this.update_success = true;
+          this.md_success = true;
           setTimeout(() => {
-            this.update_success = false;
+            this.md_success = false;
           }, 3000);
+          this.router.navigate(['/product']);
         }
       });
   }

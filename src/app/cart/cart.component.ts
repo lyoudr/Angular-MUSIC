@@ -28,12 +28,13 @@ export class CartComponent implements OnInit {
     this.cartService.getOrderInfos(1, 10)
       .subscribe(
         (resp: any) => {
-          console.log('resp is =>', resp);
-          this.orders = resp['result_data']['data'];
-          for (let i = 0; i < this.orders.length; i++){
-            this.length += this.orders[i]['order_infos'].length;
-            this.total_price += this.orders[i]['total_price']
-          }
+          this.orders = resp['result_data']['data'] ? resp['result_data']['data']: [];
+          if (this.orders){
+            for (let i = 0; i < this.orders.length; i++){
+              this.length += this.orders[i]['order_infos'].length;
+              this.total_price += this.orders[i]['total_price']
+            }
+          };
           // define order numbers in cart
           this.sharedService.order_num.next(this.length);
           this.sharedService.toggle_is_loading(false);
