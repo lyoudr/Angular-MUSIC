@@ -1,0 +1,20 @@
+<section class="main col-6 col-m-10 col-s-11">
+    <div class = 'head'>
+        <a class = 'add' routerLink = '/product/add'>
+            Add Product
+        </a>
+    </div>
+    <div class = 'products' *ngFor = 'let product of products'>
+        <a class = 'product' [routerLink] = "['/product/edit/', product.product_id]">
+            <div class = 'img_frame col-5 col-s-7'>
+                <img class = 'img' [src] = "product.product_img"/>
+            </div>
+            <div class='content col-7 col-s-5'>
+                <p class = 'title'>{{product.product_name}}</p>
+                <p class = 'description'>{{product.description}}</p>
+                <p class = 'price'>{{product.price}}$</p>
+                <p class = 'product_no'>{{product.product_no}}</p>
+            </div>
+        </a>
+    </div>
+</section>

@@ -57,12 +57,13 @@ export class BlogDetailComponent implements OnInit {
     }
   }
 
-  add_to_cart(product_id : number){
+  add_to_cart(product_id : number, product_type_id: number){
     // 1. check if user logged in
     // 2. If user is logged in
     console.log('this.cookieService.get("access_token") is =>', this.cookieService.get('access_token'));
     if(this.cookieService.get('access_token')){
       var data = {
+        'product_type_id': product_type_id,
         'product_id': product_id,
         'count': this.count
       }

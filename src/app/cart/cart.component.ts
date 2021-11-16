@@ -11,7 +11,9 @@ import { SharedService } from 'src/services/shared.service';
 })
 export class CartComponent implements OnInit {
 
-  order_infos : Array<any> = [];
+  orders : any = [];
+  length : number = 0;
+  total_price: number = 0;
 
   constructor(
     private router : Router,
@@ -26,10 +28,14 @@ export class CartComponent implements OnInit {
     this.cartService.getOrderInfos(1, 10)
       .subscribe(
         (resp: any) => {
-          this.order_infos = resp['result_data']['data']
-          console.log('this.order_infos.length is =>', this.order_infos.length)
+          console.log('resp is =>', resp);
+          this.orders = resp['result_data']['data'];
+          for (let i = 0; i < this.orders.length; i++){
+            this.length += this.orders[i]['order_infos'].length;
+            this.total_price += this.orders[i]['total_price']
+          }
           // define order numbers in cart
-          this.sharedService.order_num.next(this.order_infos.length)
+          this.sharedService.order_num.next(this.length);
           this.sharedService.toggle_is_loading(false);
         },
         (error) => {
@@ -45,7 +51,7 @@ export class CartComponent implements OnInit {
     this.sharedService.toggle_is_loading(true);
     this.cartService.deleteOrderInfo(order_id)
       .subscribe((resp: any) => {
-        this.order_infos = resp['result_data']['data'];
+        this.orders = resp['result_data'];
         this.sharedService.toggle_is_loading(false);
       })
   }

@@ -1,0 +1,70 @@
+.main {
+    margin: 70px auto 0 auto;
+    padding: 10px 10px;
+    .head{
+        padding: 1rem 0;
+        a {
+            background-repeat: no-repeat;
+            background-image: url('../../assets/icon/add.svg');
+            padding-left: 30px;
+            display: block;
+            text-decoration: none;
+            color: #535151;
+            &:hover{
+                border-bottom: 1px solid #535151;
+                color: #424242;
+            }
+        }
+    }
+    .products{
+        padding: 1rem 0;
+        border-bottom: 1px solid #e0e0e0;
+        .product{
+            display: flex;
+            text-decoration: none;
+            cursor: pointer;
+            .img_frame{
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+            }
+            .img{
+                width: 100%;
+            }
+            .content{
+                position: relative;
+                height: 160px;
+                padding-left: 20px;
+                .title{
+                    color: #424242;
+                    font-weight: 500;
+                    font-size: 17px;
+                    margin-top: 0;
+                }
+                .description{
+                    color: #535151;
+                    font-size: 15px;
+                    letter-spacing: 0.4px;
+                    white-space: normal;
+                    display: -webkit-box;
+                    overflow: hidden;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3;
+                }
+                .price{
+                    font-size: 14px;
+                    color: #4b4949;
+                    letter-spacing: 0.4px;
+                }
+                .product_no{
+                    font-size: 12px;
+                    color: #b6b6b6;
+                    letter-spacing: 0.4px;
+                    position: absolute;
+                    bottom: 0;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

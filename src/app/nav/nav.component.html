@@ -5,7 +5,7 @@
     </a>
     <a class = 'manage right' routerLink = '/cart'>
         <img src="../../assets/icon/shopping-cart.png"/>
-        <span>{{order_num}}</span>
+        <div class = 'number'>{{order_num}}</div>
     </a>
     <a class="right" (click)="is_drop = !is_drop">
         <img src="../../assets/icon/profile.svg"/>
@@ -20,6 +20,8 @@
         <p>Log Out</p>
         <img src="../../assets/icon/logout.svg"/>
     </a>
-    <a routerLink = '/manage'>Personal page</a>
+    <a [routerLink] = "page.url" *ngFor = 'let page of pages'>
+        {{page.name}}
+    </a>
 </div>
 

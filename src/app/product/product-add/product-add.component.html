@@ -1,0 +1,53 @@
+<section class = 'main pd-s pd-l'>
+    <div class="blog col-3 col-m-8 col-s-11">
+        <img [src] = "blog_post_display.photo"/>
+        <p>{{blog_post_display.title}}</p>
+        <p>{{blog_post_display.description}}</p>
+    </div>
+    <div class="product col-4 col-m-8 col-s-11">
+        <form class="form" [formGroup] = "productForm" (ngSubmit) = "onSubmit()">
+            <div class="field">
+                <span>Blog Post</span>
+                <select 
+                    #blog_post
+                    class = 'class_name select' 
+                    name = "blogpost_id" 
+                    formControlName="blogpost_id" 
+                    (change)="set_blog(blog_post.value)"
+                >
+                    <option *ngFor = 'let post of posts' [value]="post.id">
+                        {{post.title}}
+                    </option>
+                </select>
+            </div>
+            <div class="field">
+                <span>Product Name</span>
+                <input id="product_name" name="product_name" type="text" formControlName="product_name"/>
+            </div>
+            <div class="field">
+                <span>Product Type</span>
+                <select class = 'select' name = "product_type_id" formControlName="product_type_id">
+                    <option *ngFor = 'let product_type of product_types' [value]="product_type.id">
+                        {{product_type.type_name}}
+                    </option>
+                </select>
+            </div>
+            <div class="field">
+                <span>Description</span>
+                <input id="description" name="description" type = "text" formControlName="description"/>
+            </div>
+            <div class="field">
+                <span>Price</span>
+                <input id="price" name="price" type = "text" formControlName="price"/>
+            </div>
+            <div class="field">
+                <button class="submit" type="submit">create</button>
+            </div>
+        </form>
+    </div>
+</section>
+<div class = "background" *ngIf = "add_success">
+    <section [ngClass] = "{'pop_up': true, 'show' : add_success ? true : false}" *ngIf = "add_success">
+        <p>You have successfully created one product.</p>
+    </section>
+</div>

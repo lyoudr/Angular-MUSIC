@@ -1,21 +1,29 @@
-<section class="main col-8 col-m-10 col-s-11">
-    <div class = 'order_infos' *ngFor = 'let order_info of order_infos'>
-        <a class = 'order_info'>
-            <div class = 'img_frame col-5 col-s-7'>
-                <img class = 'img' [src] = "order_info.product_img"/>
-            </div>
-            <div class='content col-7 col-s-5'>
-                <p class = 'title'>{{order_info.product_name}}</p>
-                <p class = 'count'>number: {{order_info.count}}</p>
-                <p class = 'price'>price: {{order_info.price}} $TW</p>
-                <a class="delete" (click) = "delete_order(order_info.order_info_id)">
-                    <img src='../../../assets/icon/trash.svg'/>
+<section class="main col-6 col-m-10 col-s-11">
+    <ng-container *ngFor = 'let order of orders'>
+        <div class = 'order_header'>
+            <p>{{order.product_type_name}}</p>
+            <p>{{order.order_no}}</p>
+        </div>
+        <div class = 'order'>
+            <div class = 'order_infos' *ngFor = 'let order_info of order.order_infos'>
+                <a class = 'order_info'>
+                    <div class = 'img_frame col-5 col-s-7'>
+                        <img class = 'img' [src] = "order_info.product_img"/>
+                    </div>
+                    <div class='content col-7 col-s-5'>
+                        <p class = 'title'>{{order_info.product_name}}</p>
+                        <p class = 'count'>number: {{order_info.count}}</p>
+                        <p class = 'price'>price: {{order_info.price}} $TW</p>
+                        <a class="delete" (click) = "delete_order(order_info.order_info_id)">
+                            <img src='../../../assets/icon/trash.svg'/>
+                        </a>
+                    </div>
                 </a>
             </div>
-        </a>
-    </div>
+        </div>
+    </ng-container>
     <div class = 'order_result'>
-        <p class='total_price'>Total Price : <span></span></p>
+        <p class='total_price'>Total Price : {{total_price}}<span></span></p>
         <button class = 'order'>Order</button>
     </div>
 </section>

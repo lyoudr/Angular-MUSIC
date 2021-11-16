@@ -16,56 +16,77 @@
             }
         }
     }
-    .order_infos{
-        padding: 1rem 0;
-        border-bottom: 1px solid #e0e0e0;
-        .order_info{
-            display: flex;
-            text-decoration: none;
-            
-            .img_frame{
+    .order_header{
+        margin-top: 20px;
+        background-color: #d4d1d1;
+        height: 50px;
+        display: flex;
+        padding: 0 20px;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15px;
+        letter-spacing: 0.8px;
+        p {
+            &:nth-child(2){
+                font-size: 8px;
+            }
+        }
+    }
+    .order{
+        border: 1px solid #e0e0e0;
+        padding: 0 20px;
+        border-radius: 4px;
+        .order_infos{
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            .order_info{
                 display: flex;
-                align-items: flex-start;
-                justify-content: center;
-            }
-            .img{
-                width: 100%;
-            }
-            .content{
-                position: relative;
-                height: 160px;
-                padding-left: 20px;
-                .title{
-                    color: #424242;
-                    font-weight: 500;
-                    font-size: 17px;
-                    margin-top: 0;
+                text-decoration: none;
+                
+                .img_frame{
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
                 }
-                .count{
-                    color: #535151;
-                    font-size: 15px;
-                    letter-spacing: 0.4px;
-                    white-space: normal;
-                    display: -webkit-box;
-                    overflow: hidden;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 3;
+                .img{
+                    width: 100%;
                 }
-                .price{
-                    font-size: 14px;
-                    color: #b6b6b6;
-                    letter-spacing: 0.4px;
-                }
-                .delete {
-                    cursor: pointer;
-                    font-size: 15px;
-                    color: #757272;
-                    letter-spacing: 0.5px;
-                    img{
-                        float : right;
-                        width: 18px;
+                .content{
+                    position: relative;
+                    height: 160px;
+                    padding-left: 20px;
+                    .title{
+                        color: #424242;
+                        font-weight: 500;
+                        font-size: 17px;
+                        margin-top: 0;
                     }
-                    
+                    .count{
+                        color: #535151;
+                        font-size: 15px;
+                        letter-spacing: 0.4px;
+                        white-space: normal;
+                        display: -webkit-box;
+                        overflow: hidden;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 3;
+                    }
+                    .price{
+                        font-size: 14px;
+                        color: #b6b6b6;
+                        letter-spacing: 0.4px;
+                    }
+                    .delete {
+                        cursor: pointer;
+                        font-size: 15px;
+                        color: #757272;
+                        letter-spacing: 0.5px;
+                        img{
+                            float : right;
+                            width: 18px;
+                        }
+                        
+                    }
                 }
             }
         }

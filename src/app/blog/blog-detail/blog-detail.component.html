@@ -1,10 +1,10 @@
-<div class='post col-10 col-m-11 col-s-11' *ngIf='post'>
+<div class='post col-8 col-m-11 col-s-11' *ngIf='post'>
     <div class='header'>
         <p class='title'>{{post.title}}</p>
         <p class='description'>{{post.description}}</p>
     </div>
     <div class = 'paper'>
-        <div class = 'left col-5 col-m-12 col-s-12'>
+        <div class = 'left col-4 col-m-12 col-s-12'>
             <div class='pdf' *ngIf = "post.music_sheet">
                 <pdf-viewer 
                     [src]="post.music_sheet" 
@@ -21,7 +21,7 @@
                     <p>{{count}}</p>
                     <a class = 'btn' (click)="md_count(1)"><img src = "../../../assets/icon/add.svg"/></a>
                 </div>
-                <button class = 'add_to_cart' (click) = "add_to_cart(post.product_id)"> Add to Cart </button>
+                <button class = 'add_to_cart' (click) = "add_to_cart(post.product_id, post.product_type_id)"> Add to Cart </button>
             </div>
         </div>
         <div class='content col-6 col-m-12 col-s-12'>

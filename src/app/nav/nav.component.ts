@@ -13,6 +13,16 @@ export class NavComponent implements OnInit {
   
   is_drop: boolean = false;
   order_num: number = 0;
+  pages: Array<{url: string; name: string}> = [
+    {
+      'url': '/manage',
+      'name': 'Personal page'
+    },
+    {
+      'url': '/product',
+      'name': 'Personal products'
+    }
+  ];
 
   constructor(
     private router : Router,

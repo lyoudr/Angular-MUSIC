@@ -4,7 +4,7 @@
         <p class='description'>{{post.description}}</p>
     </div>
     <div class = 'paper'>
-        <div *ngIf = 'post.music_sheet' class='pdf col-5 col-m-12 col-s-12'>
+        <div *ngIf = 'post.music_sheet' class='pdf col-4 col-m-12 col-s-12'>
             <pdf-viewer 
                 [src]="post.music_sheet" 
                 [render-text]="true" 

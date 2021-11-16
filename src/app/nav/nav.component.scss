@@ -36,6 +36,22 @@
     }
     .manage{
         margin-left: auto;
+        text-decoration: none;
+        display: flex;
+        .number{
+            position: absolute;
+            margin-left: 20px;
+            margin-top: 15px;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            padding: 2px;
+            background: #fff;
+            border: 1px solid #666;
+            color: #666;
+            text-align: center;
+            font:12px Arial, sans-serif;
+        }
     }
 }
 
