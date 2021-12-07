@@ -105,6 +105,8 @@ export class ManageModifyComponent implements OnInit {
 
   // set section form
   set_section(name: string, input: any, index : number){
+    console.log('index is =>', index);
+    console.log('name is =>', name);
     if (name == 'post_type'){
       this.ori_sections[index]['type'] = input.value;
       this.ori_sections[index]['text'] = null;
@@ -115,33 +117,41 @@ export class ManageModifyComponent implements OnInit {
       this.ori_sections[index]['video'] = null;
     }
     this.ori_sections[index][name] = input.files ? input.files[0] : input.value;
+    if (input.files){
+      this.ori_sections[index]['name'] = input.files[0].name;
+    }
+    
+    console.log('this.ori_sections is =>', this.ori_sections);
   }
 
   handle_img(){
     let images : any = [];
     this.ori_sections.forEach((section : any) => {
-      if(section['post_type'] == 'photo'){
+      console.log('section is =>', typeof section['photo']);
+      if(section['post_type'] == 'photo' && typeof section['photo'] == 'object'){
         images.push(section['photo']);
       }
     });
+    console.log('images is =>', images);
     return new Promise(resolve => {
       this.blogService.uploadImg(images).subscribe((data: any) => {
-        resolve(data);
-      });
-    }
-  )
+          resolve(data);
+        });
+      }
+    )
   }
 
   // submit section form
   async submit_section(){
-    const images_id : any = await this.handle_img()
+    const images_id : any = await this.handle_img();
     this.ori_sections.forEach((section: any) => {
-      if(section['post_type'] == 'photo'){
-        section['photo_id'] = images_id[section['photo']['name']];
+      if(section['post_type'] == 'photo' && typeof section['photo'] == 'object'){
+        section['photo_id'] = images_id[section['name']];
       }
     });
     this.blogService.patchBlogSection(this.ori_sections, this.blogpost_id)
-      .subscribe(data => {
+      .subscribe((resp : any) => {
+        console.log('data is =>', resp);
         this.router.navigateByUrl('/manage');
       });
   }

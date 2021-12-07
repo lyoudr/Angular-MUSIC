@@ -33,7 +33,12 @@ export class BlogService {
 
     // Get detail blog post
     getBlogDetailPost(blog_id: any) {
-        return this.http.get(`${this.host}/api/blog/${blog_id}`)
+        return this.http.get(`${this.host}/api/blog/${blog_id}`, {
+            headers: {
+                'Authorization' : this.cookieService.get('access_token') ? `Bearer ${this.cookieService.get('access_token')}` : '',
+                'X-CSRFToken' : this.cookieService.get('csrftoken') ? this.cookieService.get('csrftoken') : ''
+            }
+        })
     }
 
 

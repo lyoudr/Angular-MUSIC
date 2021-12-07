@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, HostListener } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/services/auth.service';
@@ -23,8 +23,9 @@ export class NavComponent implements OnInit {
       'name': 'Personal products'
     }
   ];
-
+  
   constructor(
+    private _eleref : ElementRef,
     private router : Router,
     private authService : AuthService,
     private cookieService : CookieService,
@@ -46,11 +47,21 @@ export class NavComponent implements OnInit {
       .subscribe(data => {
         if (data == "You've benn logout"){
           this.cookieService.deleteAll();
+          this.sharedService.order_num.next(0);
           setTimeout(() => {
             this.sharedService.toggle_is_loading(false);
             this.router.navigate(['/blog']);
           }, 2000);
         }
       });
+  }
+
+  @HostListener('document:click', ['$event'])
+  close_drop(event: any){
+    const drop_btn = this._eleref.nativeElement.querySelector('#nav_drop').contains(event.target);
+    const drop_down = this._eleref.nativeElement.querySelector('#drop') ? this._eleref.nativeElement.querySelector('#drop').contains(event.target) : this._eleref.nativeElement.querySelector('#drop');
+    if (!drop_btn && !drop_down && this.is_drop){
+      this.is_drop = false;
+    } 
   }
 }

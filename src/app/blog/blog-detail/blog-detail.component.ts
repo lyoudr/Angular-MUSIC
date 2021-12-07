@@ -60,7 +60,6 @@ export class BlogDetailComponent implements OnInit {
   add_to_cart(product_id : number, product_type_id: number){
     // 1. check if user logged in
     // 2. If user is logged in
-    console.log('this.cookieService.get("access_token") is =>', this.cookieService.get('access_token'));
     if(this.cookieService.get('access_token')){
       var data = {
         'product_type_id': product_type_id,
@@ -71,6 +70,14 @@ export class BlogDetailComponent implements OnInit {
         .subscribe((resp : any) => {
           if(resp['return_code'] == '0000'){
             this.add_success = true;
+            let data = resp['result_data'];
+            let length = 0;
+            if(data.length){
+              for (let i = 0; i < data.length; i++){
+                length += data[i]['order_infos'].length;
+              }
+            }
+            this.sharedService.order_num.next(length);
             setTimeout(() => {
               this.add_success = false;
             }, 3000);

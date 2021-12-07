@@ -27,6 +27,47 @@
     </ng-container>
     <div class = 'order_result'>
         <p class='total_price'>Total Price : {{total_price}}<span></span></p>
-        <button class = 'order'>Order</button>
+        <button class = 'order' (click) = "order()">Order</button>
     </div>
 </section>
+<div class = "background" *ngIf = "show_pay_info">
+    <section [ngClass] = "{'pop_up': true, 'show' : t_pay ? true : false}" class = "col-7 col-m-8" *ngIf = "t_pay">
+        <div class = 'choice'>
+            <p class = 'col-4'>Choose Pay Info</p>
+            <select class = 'col-8' (change)="set_pay_info($event)">
+                <option *ngFor = "let pay_info of pay_infos; let index = index;" [value] = "index">
+                    {{pay_info.bank_name}}
+                </option>
+            </select>
+        </div>
+        <div class = 'info'>
+            <p class = 'col-4'>Bank </p>
+            <p class = 'col-8'>{{pay_info.bank_name}}</p>
+        </div>
+        <div class = 'info'>
+            <p class = 'col-4'>Card No.</p>
+            <p class = 'col-8'>{{pay_info.card_no}}</p>
+        </div>
+        <div class = 'info'>
+            <p class = 'col-4'>Card Type </p>
+            <p class = 'col-8'>{{pay_info.card_name}}</p>
+        </div>
+        <div class = 'info'>
+            <p class = 'col-4'>Ship Addr </p>
+            <input #ship_addr type = 'text' [ngClass] = "{'col-8': true, 'err': validate_err ? true : false}" required>
+            <p class = 'err_msg' *ngIf = "validate_err">please fill ship address</p> 
+        </div>
+        <div class = 'make_order'>
+            <button class = 'col-4' (click) = "make_order(ship_addr.value)">Yes, make order</button>
+            <button class = 'col-4' (click) = "t_pay = false;"> No, I will create another pay info </button>
+        </div>
+    </section>
+    <section [ngClass] = "{'pop_up': true, 'show' : n_pay ? true : false}" class = "col-5 col-m-8" *ngIf = "n_pay">
+        <p>There's not your pay info in system</p>
+        <p>Do you want to create pay into ?</p>
+        <div class='make_order'>
+            <button class = 'col-4'>Yes</button>
+            <button (click) = "n_pay = false;" class = 'col-4'>No</button>
+        </div>
+    </section>
+</div>

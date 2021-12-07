@@ -4,6 +4,9 @@
             Add Product
         </a>
     </div>
+    <div class = 'no_products' *ngIf = 'products.length == 0'>
+        <p>You can add product here.</p>
+    </div>
     <div class = 'products' *ngFor = 'let product of products'>
         <a class = 'product' [routerLink] = "['/product/edit/', product.product_id]">
             <div class = 'img_frame col-5 col-s-7'>

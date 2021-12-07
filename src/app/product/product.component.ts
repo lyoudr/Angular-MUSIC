@@ -22,7 +22,10 @@ export class ProductComponent implements OnInit {
     // Get all user products
     this.productService.getProducts(1, 5, undefined)
       .subscribe((resp : any) => {
-        this.products = resp['result_data']['data'];
+        const data = resp['result_data']['data'];
+        if(data.length){
+          this.products = data.length ? data : [];
+        }
         this.sharedService.toggle_is_loading(false);
       });
     

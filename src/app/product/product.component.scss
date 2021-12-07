@@ -16,6 +16,14 @@
             }
         }
     }
+    .no_products{
+        height : 200px;
+        border: 1px dashed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+    }
     .products{
         padding: 1rem 0;
         border-bottom: 1px solid #e0e0e0;

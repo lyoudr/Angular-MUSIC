@@ -49,8 +49,9 @@
         </form>
     </ng-container>
     <ng-container *ngIf = "post_type == 'section'">
-        <ng-container *ngFor = "let each_section of ori_sections; let index = index">
+        <ng-container *ngFor = "let each_section of ori_sections; let index = index;">
             <form class="section edit">
+                <p>{{index}}</p>
                 <div class="field">
                     <span>order</span>
                     <input [value]="each_section.order" type = "text" (change) = "set_section('order', $event.target, index)"/>
@@ -63,15 +64,12 @@
                 </div>
                 <div class="text_field" *ngIf = "each_section.post_type == 'text'">
                     <span>text</span>
-                    <textarea [value]="each_section.text" rows = "20" type = "text" (change) = "set_section('text', $event.target, index)"></textarea>
+                    <textarea [value]="each_section.text" rows = "20" type = "text" (change) = "set_section('text', $event.target, index);"></textarea>
                 </div>
                 <div class="field" *ngIf = "each_section.post_type == 'photo'">
                     <span>photo</span>
-                    <input id='section_photo' type = "file" (change) = "set_section('photo', $event.target, index);" hidden/>
-                    <label class = 'upload' for='section_photo'>{{each_section.photo ? 
-                        each_section.photo.name 
-                        ? each_section.photo.name : each_section.photo.split('/')[3]
-                        : 'Upload'}}
+                    <input [id] = "'section_photo_' + index" type = "file" (change) = "set_section('photo', $event.target, index);" hidden/>
+                    <label class = 'upload' [for] = "'section_photo_' + index">{{each_section.photo ? each_section.name : 'Upload'}}
                     </label>
                 </div>
                 <div class="field" *ngIf = "each_section.post_type == 'video'">

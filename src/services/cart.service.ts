@@ -48,4 +48,24 @@ export class CartService {
             }
         });
     }
+
+    // Get user pay info
+    getPayInfo(){
+        return this.http.get(`${this.host}/api/order/pay_info/`, {
+            headers : {
+                'Authorization' : `Bearer ${this.cookieService.get('access_token')}`,
+                'X-CSRFToken' : this.cookieService.get('csrftoken')
+            }
+        });
+    }
+
+    // Create order
+    createOrder(data: any){
+        return this.http.post(`${this.host}/api/order/`, data, {
+            headers : {
+                'Authorization' : `Bearer ${this.cookieService.get('access_token')}`,
+                'X-CSRFToken' : this.cookieService.get('csrftoken')
+            }
+        });
+    }
 }

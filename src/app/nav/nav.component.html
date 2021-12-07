@@ -7,11 +7,11 @@
         <img src="../../assets/icon/shopping-cart.png"/>
         <div class = 'number'>{{order_num}}</div>
     </a>
-    <a class="right" (click)="is_drop = !is_drop">
+    <a id = 'nav_drop' class="right" (click)="is_drop = !is_drop">
         <img src="../../assets/icon/profile.svg"/>
     </a>
 </nav>
-<div *ngIf = "is_drop" class = "select col-s-5 col-3" [ngClass] = "{'dropdown': true, 'active': is_drop}">
+<div id = 'drop' *ngIf = "is_drop" class = "select col-s-5 col-3" [ngClass] = "{'dropdown': true, 'active': is_drop}">
     <a class="login" routerLink = '/login'>
         <p>Log In</p>
         <img src="../../assets/icon/enter.svg"/>

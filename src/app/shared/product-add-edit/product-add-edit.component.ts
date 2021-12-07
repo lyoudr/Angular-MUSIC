@@ -32,9 +32,12 @@ export class ProductAddEditComponent implements OnInit {
     this.blogService.getUserBlogPost(1, 10)
       .subscribe((resp: any) => {
         this.posts = resp['data'];
+        console.log('this.posts is =>', this.posts);
         this.post_obj = this.posts.reduce((acc, cur) =>({...acc, [cur.id.toString()]: cur}), {});
         // set default blog post display
-        this.set_blog('1');
+        if (Object.keys(this.post_obj).length){
+          this.set_blog(Object.keys(this.post_obj)[0]);
+        }
         this.sharedService.toggle_is_loading(false);
       }); 
     this.productService.getProductTypes()
@@ -45,6 +48,7 @@ export class ProductAddEditComponent implements OnInit {
   }
 
   set_blog(post: any){
+    console.log('post is =>', post)
     this.blog_post_display = this.post_obj[post];
   }
 

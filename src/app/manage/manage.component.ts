@@ -29,18 +29,19 @@ export class ManageComponent implements OnInit {
     this.sharedService.toggle_is_loading(true);
     this.blogService.getUserBlogPost(1, 10)
       .subscribe((resp : any) => {
-        if (resp == 'not found'){
-          this.is_empty = true;
-        }
         this.posts = resp['data'];
         this.sharedService.toggle_is_loading(false);
       },
       (error) => {
-        if (error['status'] == 401){
-          this.sharedService.toggle_is_loading(false);
-          this.router.navigate(['/login']);
+          if (error['status'] == 401){
+            this.sharedService.toggle_is_loading(false);
+            this.router.navigate(['/login']);
+          }
+          if (error['status'] == 404){
+            this.is_empty = true;
+            this.sharedService.toggle_is_loading(false);
+          }
         }
-      }
       );
   }
 
